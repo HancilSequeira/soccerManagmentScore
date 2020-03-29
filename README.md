@@ -14,7 +14,6 @@ requirements below to develop this application.
 * run the command "php bin/console cache:clear"
 * run the command "php bin/console doctrine:database:create"
 * run the command "php bin/console doctrine:schema:update --force" 
-* run the command "php bin/console doctrine:fixtures:load" - This inserts 'Industry Buying' website, categories and brands into the database
 
 ## Project running
 * run command "bin/console server:run" to run the application in your system
