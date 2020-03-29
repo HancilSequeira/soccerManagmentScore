@@ -1,0 +1,8 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+#player_registration:
+#  path: /api/players
+#  methods: GET
+#  controller: App\Controller\PlayerController::indexAction
