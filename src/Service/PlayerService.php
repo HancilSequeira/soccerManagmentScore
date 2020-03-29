@@ -15,20 +15,25 @@ class PlayerService extends AbstractValidation
         $firstNameError = $this->validateFirstName($playerData['firstName']);
 
         if(!empty($firstNameError)){
-            return  $firstNameError;
+            foreach ($firstNameError as $err) {
+                return $err;
+            }
         }
 
         $lastNameError = $this->validateLastName($playerData['lastName']);
 
         if(!empty($lastNameError)){
-            return  $lastNameError;
+            foreach ($lastNameError as $err) {
+                return $err;
+            }
         }
 
         $playerImageURI = $this->validatePlayerImageURI($playerData['playerImageURI']);
 
         if(!empty($playerImageURI)){
-            return  $lastNameError;
-
+            foreach ($playerImageURI as $err) {
+                return $err;
+            }
         }
 
     }
