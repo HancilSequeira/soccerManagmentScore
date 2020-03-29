@@ -45,4 +45,16 @@ class PlayersRepository extends ServiceEntityRepository
         ;
     }
 
+    public function getPlayerListBasedOnIdOrName($id){
+        return $this->createQueryBuilder('p')
+            ->select('p.firstName,p.lastName, p.playerImageUri')
+            ->Where('p.id = :id')
+            ->orWhere('p.firstName = :name')
+            ->orWhere('p.lastName = :name')
+            ->setParameter('id', $id)
+            ->setParameter('name', $id)
+            ->getQuery()
+            ->getArrayResult();
+    }
+
 }

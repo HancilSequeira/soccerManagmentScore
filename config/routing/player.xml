@@ -13,4 +13,8 @@
       <default key="_controller">App\Controller\PlayerController::deleteAction</default>
    </route>
 
+   <route id="player_list_base_on_id_name" path="/players/{id}" methods="GET">
+      <default key="_controller">App\Controller\PlayerController::playerListBasedOnIdOrNameAction</default>
+   </route>
+
 </routes>

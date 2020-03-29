@@ -28,4 +28,22 @@ class TeamService extends AbstractValidation
 
     }
 
+    public function validateTeamPlayerData($playerTeamData){
+        $playerIdError = $this->validatePlayerId($playerTeamData['playerId']);
+
+        if(!empty($playerIdError)){
+            foreach ($playerIdError as $err) {
+                return $err;
+            }
+        }
+
+        $teamIdError = $this->validateTeamId($playerTeamData['teamId']);
+
+        if(!empty($teamIdError)){
+            foreach ($teamIdError as $err) {
+                return $err;
+            }
+        }
+    }
+
 }
