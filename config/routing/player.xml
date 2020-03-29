@@ -9,4 +9,8 @@
       <default key="_controller">App\Controller\PlayerController::indexAction</default>
    </route>
 
+   <route id="player_registration_delete" path="/players" methods="DELETE">
+      <default key="_controller">App\Controller\PlayerController::deleteAction</default>
+   </route>
+
 </routes>

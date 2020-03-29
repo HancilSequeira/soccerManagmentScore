@@ -5,7 +5,8 @@
         xsi:schemaLocation="http://symfony.com/schema/routing
         http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="routing/player.xml" prefix="/api" />
-    <import resource="routing/team.xml" prefix="/api" />
+    <route id="team_registration" path="/team" methods="POST|PUT">
+        <default key="_controller">App\Controller\TeamController::indexAction</default>
+    </route>
 
 </routes>

@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="team_palayer")
+ * @ORM\Table(name="team_player")
  * @ORM\Entity(repositoryClass="App\Repository\TeamPlayerRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -19,12 +19,14 @@ class TeamPlayer
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Team", inversedBy="teamPlayer", cascade={"remove"} )
+     * @ORM\ManyToOne(targetEntity="App\Entity\Team", inversedBy="teamPlayer")
+     * @ORM\JoinColumn(name="team", referencedColumnName="id",onDelete="CASCADE")
      */
     private $team;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Players", inversedBy="teamPlayer", cascade={"remove"} )
+     * @ORM\ManyToOne(targetEntity="App\Entity\Players", inversedBy="teamPlayer")
+     * @ORM\JoinColumn(name="player", referencedColumnName="id",onDelete="CASCADE")
      */
     private $player;
 
