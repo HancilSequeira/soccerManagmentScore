@@ -17,4 +17,5 @@ class CustomResponseConstant
     const TEAM_ALREADY_EXISTS = "TEAM_ALREADY_EXISTS";
     const VALIDATION_ERROR = "Validation errors in your request";
     const INTERNAL_SERVER = "Internal Server";
+    const NO_DATA = "No Data";
 }

@@ -99,6 +99,28 @@ Abstract class AbstractValidation
         return $errors;
     }
 
+    public function validatePlayerId($playerId){
+        $playerIdConstraint = new Assert\NotBlank();
+        $playerIdConstraint->message ="Player Id should not be null";
+        $errors = $this->validator->validate(
+            $playerId,
+            $playerIdConstraint
+        );
+
+        return $errors;
+    }
+
+    public function validateTeamId($teamId){
+        $teamId = new Assert\NotBlank();
+        $teamId->message ="Player Id should not be null";
+        $errors = $this->validator->validate(
+            $teamId,
+            $teamId
+        );
+
+        return $errors;
+    }
+
 
 
 }

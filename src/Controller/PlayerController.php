@@ -52,14 +52,15 @@ class PlayerController //extends AbstractFOSRestController
                 return new JsonResponse($this->utilityService->JSONResponseCreation($error, null, CustomResponseConstant::VALIDATION_ERROR, Response::HTTP_OK));
             }
             $data = $request->request->all();
-            $playerObject = $this->em->getRepository(Players::class)->find($request->query->get('id'));
-
-            if ($playerObject instanceof Players) {
-                $playerObject->setFirstName($data["firstName"]);
-                $playerObject->setLastName($data["lastName"]);
-                $playerObject->setPlayerImageUri($data["playerImageURI"]);
-                $this->em->persist($playerObject);
-            } else {
+            if(!empty($request->query->get('id'))) {
+                $playerObject = $this->em->getRepository(Players::class)->find($request->query->get('id'));
+                if ($playerObject instanceof Players) {
+                    $playerObject->setFirstName($data["firstName"]);
+                    $playerObject->setLastName($data["lastName"]);
+                    $playerObject->setPlayerImageUri($data["playerImageURI"]);
+                    $this->em->persist($playerObject);
+                }
+            }else {
                 $playerObject = new Players();
                 $playerObject->setFirstName($data["firstName"]);
                 $playerObject->setLastName($data["lastName"]);
@@ -92,6 +93,19 @@ class PlayerController //extends AbstractFOSRestController
                 return new JsonResponse($this->utilityService->JSONResponseCreation(null, null, CustomResponseConstant::INVALID_REQUEST_PARAMS, Response::HTTP_OK));
             }
 
+        } catch (\Exception $e){
+            return new JsonResponse($this->utilityService->JSONResponseCreation($e->getMessage(), null, CustomResponseConstant::INTERNAL_SERVER, Response::HTTP_INTERNAL_SERVER_ERROR));
+        }
+    }
+
+    public function playerListBasedOnIdOrNameAction(Request$request,$id){
+        try{
+            $playerBasedOnTeamArray = $this->em->getRepository(Players::class)->getPlayerListBasedOnIdOrName($id);
+            if(empty($playerBasedOnTeamArray)){
+                return new JsonResponse($this->utilityService->JSONResponseCreation(null, null, CustomResponseConstant::NO_DATA, Response::HTTP_OK));
+            } else {
+                return new JsonResponse($this->utilityService->JSONResponseCreation(null, $playerBasedOnTeamArray, CustomResponseConstant::USER_DATA_SET, Response::HTTP_OK));
+            }
         } catch (\Exception $e){
             return new JsonResponse($this->utilityService->JSONResponseCreation($e->getMessage(), null, CustomResponseConstant::INTERNAL_SERVER, Response::HTTP_INTERNAL_SERVER_ERROR));
         }

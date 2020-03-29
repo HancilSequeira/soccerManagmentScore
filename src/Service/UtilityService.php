@@ -13,10 +13,11 @@ class UtilityService
                 $response["error"] = $message;
         }
 
-        if($data){
+        if($data) {
             $response["data"] = $data;
-            $response["message"] = $message;
         }
+        $response["message"] = $message;
+
         $response["code"] = $code;
 
         return $response;

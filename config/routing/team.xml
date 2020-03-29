@@ -9,4 +9,16 @@
         <default key="_controller">App\Controller\TeamController::indexAction</default>
     </route>
 
+    <route id="add_player_to_team" path="/team-players" methods="POST|PUT">
+        <default key="_controller">App\Controller\TeamController::addPlayerToTeamAction</default>
+    </route>
+
+    <route id="team_list" path="/players" methods="GET">
+        <default key="_controller">App\Controller\TeamController::teamListAction</default>
+    </route>
+
+    <route id="player_list_base_on_team" path="/players/{id}" methods="GET">
+        <default key="_controller">App\Controller\TeamController::playerListBasedOnTeamAction</default>
+    </route>
+
 </routes>
