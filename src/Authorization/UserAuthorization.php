@@ -2,8 +2,11 @@
 
 namespace App\Authorization;
 
+use App\constant\CustomResponseConstant;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
@@ -21,8 +24,11 @@ class UserAuthorization extends  EntityRepository implements UserProviderInterfa
             ->select('u')
             ->where('u.username = :username')
             ->setParameter('username', $username)
-            ->getQuery();
+            ->getQuery()->getResult();
 
+        if(!$q){
+            return new JsonResponse($this->utilityService->JSONResponseCreation(null, null, CustomResponseConstant::INVALID_USER, Response::HTTP_UNAUTHORIZED));
+        }
     }
 
     /**
