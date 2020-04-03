@@ -12,7 +12,7 @@ class PlayerService extends AbstractValidation
 
     public function validatePlayerData($playerData){
 
-        $firstNameError = $this->validateFirstName($playerData['firstName']);
+        $firstNameError = $this->validateName($playerData['firstName']);
 
         if(!empty($firstNameError)){
             foreach ($firstNameError as $err) {
@@ -20,7 +20,7 @@ class PlayerService extends AbstractValidation
             }
         }
 
-        $lastNameError = $this->validateLastName($playerData['lastName']);
+        $lastNameError = $this->validateName($playerData['lastName']);
 
         if(!empty($lastNameError)){
             foreach ($lastNameError as $err) {
@@ -28,7 +28,7 @@ class PlayerService extends AbstractValidation
             }
         }
 
-        $playerImageURI = $this->validatePlayerImageURI($playerData['playerImageURI']);
+        $playerImageURI = $this->validateImageURI($playerData['playerImageURI']);
 
         if(!empty($playerImageURI)){
             foreach ($playerImageURI as $err) {
