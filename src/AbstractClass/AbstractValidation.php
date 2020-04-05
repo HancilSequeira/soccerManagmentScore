@@ -13,12 +13,12 @@ Abstract class AbstractValidation
         $this->validator = Validation::createValidator();
     }
 
-    public function validateFirstName($firstName){
+    public function validateName($name){
 
         $firstNameConstraint = new Assert\NotBlank();
-        $firstNameConstraint->message ="First name should not be null";
+        $firstNameConstraint->message ="Name should not be null";
         $errors = $this->validator->validate(
-            $firstName,
+            $name,
             $firstNameConstraint
         );
 
@@ -37,14 +37,14 @@ Abstract class AbstractValidation
         return $errors;
     }
 
-    public function validatePlayerImageURI($playerImageURI){
+    public function validateImageURI($imageURI){
         $pattern = "/(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|](\.)(?:jpg|png|gif|tif|exf|svg|wfm)/i";
 
         $playerImageURIConstraint = new Assert\NotBlank();
-        $playerImageURIConstraint->message ="Player image URI cannot be null";
+        $playerImageURIConstraint->message ="Image URI cannot be null";
 
         $errors = $this->validator->validate(
-            $playerImageURI,
+            $imageURI,
             $playerImageURIConstraint
         );
         if(!empty($errors)) {
@@ -55,72 +55,22 @@ Abstract class AbstractValidation
         $playerImageURIConstraintURI->message ="Not a valid image URL";
 
         $errors = $this->validator->validate(
-            $playerImageURI,
+            $imageURI,
             $playerImageURIConstraint
         );
 
         return $errors;
     }
 
-    public function validateLogoURI($logoURIConstraint){
-        $pattern = "/(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|](\.)(?:jpg|png|gif|tif|exf|svg|wfm)/i";
-
-        $logoURIConstraint = new Assert\NotBlank();
-        $logoURIConstraint->message ="Player image URI cannot be null";
-
-        $errors = $this->validator->validate(
-            $logoURIConstraint,
-            $logoURIConstraint
-        );
-        if(!empty($errors)) {
-            return $errors;
-        }
-
-        $logoURIConstraint = New Assert\Regex($pattern);
-        $logoURIConstraint->message ="Not a valid image URL";
-
-        $errors = $this->validator->validate(
-            $logoURIConstraint,
-            $logoURIConstraint
-        );
-
-        return $errors;
-    }
-
-    public function validateName($name){
-
-        $nameConstraint = new Assert\NotBlank();
-        $nameConstraint->message ="First name should not be null";
-        $errors = $this->validator->validate(
-            $name,
-            $nameConstraint
-        );
-
-        return $errors;
-    }
-
-    public function validatePlayerId($playerId){
+    public function validateId($id){
         $playerIdConstraint = new Assert\NotBlank();
         $playerIdConstraint->message ="Player Id should not be null";
         $errors = $this->validator->validate(
-            $playerId,
+            $id,
             $playerIdConstraint
         );
 
         return $errors;
     }
-
-    public function validateTeamId($teamId){
-        $teamId = new Assert\NotBlank();
-        $teamId->message ="Player Id should not be null";
-        $errors = $this->validator->validate(
-            $teamId,
-            $teamId
-        );
-
-        return $errors;
-    }
-
-
 
 }

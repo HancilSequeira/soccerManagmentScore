@@ -18,7 +18,7 @@ class TeamService extends AbstractValidation
             }
         }
 
-        $logoURIError = $this->validateLogoURI($playerData['logoURI']);
+        $logoURIError = $this->validateImageURI($playerData['logoURI']);
 
         if(!empty($logoURIError)){
             foreach ($logoURIError as $err) {
@@ -29,7 +29,7 @@ class TeamService extends AbstractValidation
     }
 
     public function validateTeamPlayerData($playerTeamData){
-        $playerIdError = $this->validatePlayerId($playerTeamData['playerId']);
+        $playerIdError = $this->validateId($playerTeamData['playerId']);
 
         if(!empty($playerIdError)){
             foreach ($playerIdError as $err) {
@@ -37,7 +37,7 @@ class TeamService extends AbstractValidation
             }
         }
 
-        $teamIdError = $this->validateTeamId($playerTeamData['teamId']);
+        $teamIdError = $this->validateId($playerTeamData['teamId']);
 
         if(!empty($teamIdError)){
             foreach ($teamIdError as $err) {
